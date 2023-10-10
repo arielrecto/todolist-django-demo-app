@@ -1,3 +1,21 @@
 <div class="bg-white shadow-lg py-4 px-2 flex items-center justify-between">
-    <h1 class="text-3xl font-bold uppercase text-accent">Todolist</h1>
+    <a href="/">
+          <h1 class="text-3xl font-bold uppercase text-accent">Todolist</h1>
+    </a>
+
+    <div class="flex items-center gap-2">
+
+        {% if user.is_authenticated %}
+
+        <h1 class="text-black capitalize">Welcome <span class="text-accent font-bold">{{ user.username }}</span></h1>
+        <form action="/logout" method="post">
+            {% csrf_token %}
+            <button class="capitalize btn-accent py-2 px-4 rounded-lg">logout</button>
+        </form>
+        {% else %}
+        <a href="/login" class="capitalize btn-ghost py-2 px-4 rounded-lg">login</a>
+        <a href="/register" class="capitalize btn-accent py-2 px-4 rounded-lg">register</a>
+        {% endif %}
+
+    </div>
 </div>

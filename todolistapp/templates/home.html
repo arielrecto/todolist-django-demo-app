@@ -34,7 +34,9 @@ home page
                 <th></th>
                 <th>Name</th>
                 <th>description</th>
+                {% if user.is_authenticated %}
                 <th>Action</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -47,6 +49,8 @@ home page
                 <td>{{todo.title}}</td>
                 <td>{{todo.description}}</td>
                 <td>
+
+                    {% if user.is_authenticated %}
                     <div class="flex items-center gap-2">
                         <a href="/edit/{{todo.id}}/" class="btn-accent btn-xs capitalize">edit</a>
 
@@ -55,6 +59,8 @@ home page
                             <button class="btn-error btn-xs">Delete</button>
                         </form>
                     </div>
+
+                    {% endif %}
                 </td>
             </tr>
             {% endfor %}

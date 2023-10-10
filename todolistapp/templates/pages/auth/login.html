@@ -1,0 +1,32 @@
+{% extends 'components/base.html' %}
+
+
+
+{% block title %}
+
+Log in
+{% endblock %}
+
+{% block content %}
+
+<div class="flex justify-center items-center h-screen w-full">
+    <div class="w-96 h-auto rounded-lg shadow-lg bg-white flex flex-col gap-2">
+        <h1 class="text-3xl font-bold uppercase text-center text-accent">Login</h1>
+        <form action="/auth_user" method="post" class="flex flex-col gap-2 p-4">
+            {% csrf_token %}
+
+            <div class="flex flex-col gap-2 ">
+                <label for="" class="text-xs text-gray-500">Username</label>
+                <input type="text" class="w-full rounded-lg" name="username" placeholder="username">
+            </div>
+            <div class="flex flex-col gap-2 ">
+                <label for="" class="text-xs text-gray-500">Password</label>
+                <input type="password" name="password" class="w-full rounded-lg" placeholder="password">
+            </div>
+            <button class="btn-accent py-2 px-4 rounded-lg">Log in</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
