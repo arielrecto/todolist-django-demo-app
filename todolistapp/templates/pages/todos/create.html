@@ -1,0 +1,31 @@
+{% extends 'components/base.html' %}
+
+
+{% block title %}
+
+home page
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="h-screen w-full flex justify-center items-center">
+    <form method="POST" class="w-96 rounded-lg shadow-lg flex flex-col gap-2 p-5" action="/store">
+        <h1 class="text-xl text-accent upppercase">Create Todo</h1>
+        {%csrf_token%}
+
+        <div class="flex flex-col gap-2">
+            <label for="" class="text-xs text-gray-500">Title</label>
+            <input type="text" class="rounded-lg p-2 border-accent" name="title" placeholder="Tile">
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="" class="text-xs text-gray-500">Description</label>
+            <input type="text" class="rounded-lg p-2 border-accent" name="description" placeholder="Description">
+        </div>
+        <button class="btn btn-accent">ADD</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'components/base.html' %}
+
+
+{% block title %}
+
+home page
+
+{% endblock %}
+
+
+{% block content %}
+
+{% for message in messages %}
+
+<div class="alert alert-success">
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <span>{{message}}</span>
+</div>
+
+{% endfor %}
+
+<div class="w-full flex justify-end p-4">
+    <a href="/create" class="btn btn-xs bg-accent text-black">Add Todo</a>
+</div>
+
+<div class="overflow-x-auto">
+    <table class="table">
+        <!-- head -->
+        <thead>
+            <tr class="capitalize">
+                <th></th>
+                <th>Name</th>
+                <th>description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- row 1 -->
+
+            {% for todo in todos %}
+
+            <tr>
+                <th>{{todo.id}}</th>
+                <td>{{todo.title}}</td>
+                <td>{{todo.description}}</td>
+                <td>
+                    <div class="flex items-center gap-2">
+                        <a href="/edit/{{todo.id}}/" class="btn-accent btn-xs capitalize">edit</a>
+
+                        <form action="/delete/{{todo.id}}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn-error btn-xs">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
